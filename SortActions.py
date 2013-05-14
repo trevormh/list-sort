@@ -50,19 +50,19 @@ def SaveList(self, directory):
             num = templistbox2.index(filename) + 1  #if, find it's index number in listbox2
             if(num < 10):
                 num = str(num).rjust(2,'0') #if the number is less than 10, add leading zero's
-            os.rename(directory + "/" + name, directory + "/" + str(num + ". " + filename))  #now rename the file
+            os.rename(directory + str("/") + str(name), directory + str("/") + str(str(num) + ". " + filename))  #now rename the file
 
 #takes the selected item from the directory and adds it tot he new list    
 def AddToListTwo(self,IndexPosition):
-  filename = RemoveLeadingNums(self, str(self.listbox1.get(IndexPosition))) #get the filename, remove the leading numbers if there are any
-	List2Contents = RemoveLeadingNums(self, self.listbox2.get(0, END))
-	if(type(List2Contents) == NoneType):
+    filename = RemoveLeadingNums(self, str(self.listbox1.get(IndexPosition))) #get the filename, remove the leading numbers if there are any
+    List2Contents = RemoveLeadingNums(self, self.listbox2.get(0, END))
+    if(type(List2Contents) == NoneType):
 	    self.listbox2.insert(0, filename)
-	else:
+    else:
 	    if(filename not in List2Contents): #make sure the file isn't already in list 2
-	        self.listbox2.insert(0, filename)
-	RenumberList(self)
-	
+		    self.listbox2.insert(0, filename)
+    RenumberList(self)
+
 #adds all files from the directory to list2 instead of individually adding them
 def AddAllFiles(self):
 	i = 0
@@ -92,4 +92,3 @@ def RemoveLeadingNums(self, words):
            returnlist.insert(0,newword)
            i += 1
         return returnlist
-	
